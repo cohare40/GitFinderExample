@@ -57,6 +57,8 @@ class App extends Component {
   };
 
   render() {
+    const { users, user, loading } = this.state;
+
     return (
       <Router>
         <div className='App'>
@@ -83,6 +85,18 @@ class App extends Component {
                 )}
               ></Route>
               <Route exact path='/about' component={About}></Route>
+              <Route
+                exact
+                path='/user/:login'
+                render={props => (
+                  <User
+                    {...props}
+                    getUser={this.getUser}
+                    user={user}
+                    loading={loading}
+                  ></User>
+                )}
+              ></Route>
             </Switch>
           </div>
         </div>
